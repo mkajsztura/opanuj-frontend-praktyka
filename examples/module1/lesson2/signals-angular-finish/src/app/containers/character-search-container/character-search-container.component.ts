@@ -34,8 +34,33 @@ export class CharacterSearchContainerComponent {
       return this.characterSearchService.characters();
     }
   });
+  name = this.characterSearchService.name;
+  gender = this.characterSearchService.gender;
+  sortOption = this.characterSearchService.sortOption;
 
   constructor(private characterSearchService: CharacterSearchService) {
+    this.debugSignals();
+  }
+
+  onNameChange(newName: string): void {
+    this.characterSearchService.name.set(newName);
+  }
+
+  onGenderChange(newGender: string): void {
+    this.characterSearchService.gender.set(newGender);
+  }
+
+  onSortOptionChange(newSortOption: string): void {
+    this.characterSearchService.sortOption.set(newSortOption);
+  }
+
+  onShowRickOnlyChange(event: Event): void {
+    const value = (event.target as HTMLInputElement).checked;
+
+    this.showRickOnly.set(value);
+  }
+
+  private debugSignals() {
     effect(() => {
       console.log('showRickOnly changed to', this.showRickOnly());
     });
@@ -46,35 +71,20 @@ export class CharacterSearchContainerComponent {
         this.characterSearchService.characters()
       );
     });
-  }
 
-  get name(): string {
-    return this.characterSearchService.name;
-  }
+    effect(() => {
+      console.log('name changed to', this.characterSearchService.name());
+    });
 
-  get gender(): string {
-    return this.characterSearchService.gender;
-  }
+    effect(() => {
+      console.log('gender changed to', this.characterSearchService.gender());
+    });
 
-  get sortOption(): string {
-    return this.characterSearchService.sortOption;
-  }
-
-  onNameChange(newName: string): void {
-    this.characterSearchService.setName(newName);
-  }
-
-  onGenderChange(newGender: string): void {
-    this.characterSearchService.setGender(newGender);
-  }
-
-  onSortOptionChange(newSortOption: string): void {
-    this.characterSearchService.setSortOption(newSortOption);
-  }
-
-  onShowRickOnlyChange(event: Event): void {
-    const value = (event.target as HTMLInputElement).checked;
-
-    this.showRickOnly.set(value);
+    effect(() => {
+      console.log(
+        'sortOption changed to',
+        this.characterSearchService.sortOption()
+      );
+    });
   }
 }
