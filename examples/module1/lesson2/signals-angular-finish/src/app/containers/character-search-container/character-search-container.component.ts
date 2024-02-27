@@ -34,21 +34,12 @@ export class CharacterSearchContainerComponent {
       return this.characterSearchService.characters();
     }
   });
+  name = this.characterSearchService.name;
+  gender = this.characterSearchService.gender;
+  sortOption = this.characterSearchService.sortOption;
 
   constructor(private characterSearchService: CharacterSearchService) {
     this.debugSignals();
-  }
-
-  get name(): string {
-    return this.characterSearchService.name();
-  }
-
-  get gender(): string {
-    return this.characterSearchService.gender();
-  }
-
-  get sortOption(): string {
-    return this.characterSearchService.sortOption();
   }
 
   onNameChange(newName: string): void {
