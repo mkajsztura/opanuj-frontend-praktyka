@@ -37,7 +37,7 @@ export const cartSlice = createSlice({
     decreaseAmount: (state, action: PayloadAction<Product['id']>) => {
       const product = state.items.find((item) => item.id === action.payload);
       if (!product) {
-        throw 'No product in cart :O';
+        throw 'No such a product in cart :O';
       }
       if (product.amount === 1) {
         state.items = state.items.filter((item) => item.id !== action.payload);

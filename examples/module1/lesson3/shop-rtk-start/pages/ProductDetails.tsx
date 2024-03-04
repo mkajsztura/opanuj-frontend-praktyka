@@ -1,19 +1,19 @@
-import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { ProductContext } from '../contexts/ProductContext';
 import { useAppDispatch } from '../hooks/rtk';
+import { useGetProductQuery } from '../services/product.service';
 import { addToCart } from '../state/cartSlice';
 
 const ProductDetails = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
-  const { products } = useContext(ProductContext);
+  if (!id) {
+    return;
+  }
 
-  const product = products.find((item) => {
-    return item.id === parseInt(id!);
-  });
+  const { data, isLoading } = useGetProductQuery(id);
+  const product = data;
 
-  if (!product) {
+  if (isLoading || !product) {
     return (
       <section className="h-screen flex justify-center items-center">
         Loading...
