@@ -1,8 +1,9 @@
-import { INTEGER_VALIDATORS, isInteger } from './number-validation';
+import { INTEGER_VALIDATORS } from './number-validation';
+import { isInteger } from './string-validation';
 
 export function validateNumber(value: string): string {
   if (!isInteger(value)) {
-    return 'Value is empty or is not an interger.';
+    return 'Value is empty or is not an integer.';
   }
   const validationResults = INTEGER_VALIDATORS.map((validator) =>
     validator(+value)

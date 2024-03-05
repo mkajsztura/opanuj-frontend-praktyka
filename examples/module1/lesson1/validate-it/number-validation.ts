@@ -2,13 +2,10 @@ import { ValidationResult } from "./validation.model";
 
 export type NumberValidateFn = (input: number) => ValidationResult;
 
-export const isInteger = (value: string): boolean =>
-  value !== '' && Number.isInteger(Number(value));
-
 export const isGreaterThan =
-  (testParameter: number): NumberValidateFn =>
+  (boundary: number): NumberValidateFn =>
   (input: number) => {
-    const isValid = input < testParameter;
+    const isValid = input < boundary;
     if (isValid) {
       return {
         isValid,
@@ -16,20 +13,20 @@ export const isGreaterThan =
     }
     return {
       isValid,
-      violation: `given number is greater than ${testParameter}`,
+      violation: `given number is greater than ${boundary}`,
     };
   };
 
 export const isLowerThan =
-  (testParameter: number): NumberValidateFn =>
+  (boundary: number): NumberValidateFn =>
   (input: number) => {
-    const isValid = testParameter > input;
+    const isValid = boundary > input;
     if (isValid) {
       return { isValid };
     }
     return {
       isValid: true,
-      violation: `given number is lower than ${testParameter}`,
+      violation: `given number is lower than ${boundary}`,
     };
   };
 
