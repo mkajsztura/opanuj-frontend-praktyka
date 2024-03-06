@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import fetchProxy from './fetch-proxy';
 
-const API_URL = '/api/data/users?timeout=4000';
+const API_URL = '/api/data/users?timeout=3000';
 
 interface User {
   id: number;
@@ -13,12 +13,7 @@ export default function useUsers() {
   const [isTimeoutError, setIsTimeoutError] = useState<boolean>(false);
 
   function loadUsers(timeout: number) {
-    const abortController = new AbortController();
-    setTimeout(() => {
-      abortController.abort();
-    }, timeout);
-
-    fetchProxy(API_URL, { signal: abortController.signal })
+    fetchProxy(API_URL, { timeout })
       .then((res) => res.json())
       .then((res) => res.users)
       .then((users) => {
