@@ -27,9 +27,9 @@ import { UserRepositoryService } from './user.repository';
       }
     </div>
   `,
-  selector: 'app-users',
+  selector: 'app-users-repo',
 })
-export class UsersComponent {
+export class UsersDataFromRepoComponent {
   userService = inject(UserRepositoryService);
   queryClient = injectQueryClient();
 

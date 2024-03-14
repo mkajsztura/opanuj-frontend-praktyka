@@ -18,9 +18,9 @@ import { UserService } from './user.service';
       </ul>
     </div>
   `,
-  selector: 'app-users2',
+  selector: 'app-users-service',
 })
-export class Users2Component {
+export class UsersDataFromServiceComponent {
   userService = inject(UserService);
   queryClient = injectQueryClient();
 

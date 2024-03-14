@@ -1,29 +1,29 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { UsersComponent } from './users.component';
-import { Users2Component } from './users2.component';
+import { UsersDataFromRepoComponent } from './users.component';
+import { UsersDataFromServiceComponent } from './users2.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   template: `
     <div class="wrapper">
-      <div class="column">
+      <div>
         <h4>Users query in component 1</h4>
-        <app-users></app-users>
+        <app-users-repo></app-users-repo>
       </div>
-      <div class="column">
+      <div>
         <h4>Users query in component 2</h4>
-        <app-users></app-users>
+        <app-users-repo></app-users-repo>
       </div>
-      <div class="column">
+      <div>
         <h4>Users query by service 1</h4>
-        <app-users2></app-users2>
+        <app-users-service></app-users-service>
       </div>
-      <div class="column">
+      <div>
         <h4>Users query by service 2</h4>
-        <app-users2></app-users2>
+        <app-users-service></app-users-service>
       </div>
     </div>
   `,
@@ -35,6 +35,6 @@ import { Users2Component } from './users2.component';
       gap: 10px;
     }
   `],
-  imports: [RouterOutlet, CommonModule, UsersComponent, Users2Component],
+  imports: [RouterOutlet, CommonModule, UsersDataFromRepoComponent, UsersDataFromServiceComponent],
 })
 export class AppComponent {}
