@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { UsersDataFromRepoComponent } from './users.component';
-import { UsersDataFromServiceComponent } from './users2.component';
+import { UsersDataFromRepoComponent } from './users-repo.component';
+import { UsersDataFromServiceComponent } from './users-service.component';
 
 @Component({
   selector: 'app-root',
