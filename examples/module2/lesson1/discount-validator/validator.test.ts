@@ -16,4 +16,13 @@ describe('Form validation', () => {
         const errors = formValidator('John', 'Doe', -1);
         expect(errors).toContain('Age must be a positive number');
     });
+    test('should return an empty array if all fields are valid', () => {
+        const errors = formValidator('John', 'Doe', 30);
+        expect(errors).toEqual([]);
+    });
+    test('should throw an error if age is not a number', () => {
+        expect(() => formValidator('John', 'Doe', NaN)).toThrowError(
+            'Age must be a number'
+        );
+    });
 });
