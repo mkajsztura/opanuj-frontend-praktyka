@@ -1,15 +1,15 @@
-import { useContext } from 'react';
 import { BsBag } from 'react-icons/bs';
 import { CiShop } from 'react-icons/ci';
 import { Link } from 'react-router-dom';
-import { CartContext } from '../contexts/CartContext';
+import { useAppSelector } from '../../shop-rtk-start/hooks/rtk';
+import { selectItemAmount } from '../../shop-rtk-start/state/cartSlice';
 
 interface HeaderProps {
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Header = ({ setIsSidebarOpen }: HeaderProps) => {
-  const { itemAmount } = useContext(CartContext);
+  const itemAmount = useAppSelector(selectItemAmount);
 
   return (
     <header className={`bg-none py-6 fixed w-full z-10 lg:px-8 transition-all`}>
