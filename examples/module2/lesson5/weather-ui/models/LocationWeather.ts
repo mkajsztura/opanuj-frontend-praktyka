@@ -16,3 +16,17 @@ export interface LocationWeather {
   country: string;
   weatherDetails: DailyWeather[];
 }
+
+export interface DailyWeatherUS {
+  date: string;
+  type: WeatherType;
+  average_temperature: number;
+}
+
+export interface LocationWeatherUS {
+  city: string;
+  country: string;
+  weatherDetails: {
+    Weather: DailyWeatherUS[];
+  };
+}

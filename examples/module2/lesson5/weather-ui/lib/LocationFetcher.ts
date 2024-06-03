@@ -1,16 +1,17 @@
 import axios from 'axios';
-import { LocationWeather } from '../models/LocationWeather';
+import { LocationWeather, LocationWeatherUS } from '../models/LocationWeather';
 import { parseLocation } from './LocationParser';
 import { WeatherRequest } from '../models/WeatherRequest';
+import { mapWeather } from './WeatherMapper';
 
 async function getWeatherData(
   request: WeatherRequest
 ): Promise<LocationWeather> {
-  const { data } = await axios.get<LocationWeather>(
+  const { data } = await axios.get<LocationWeather | LocationWeatherUS>(
     `/api/weather?city=${request.city}&country=${request.country}`
   );
 
-  return data;
+  return mapWeather(data);
 }
 
 export async function fetchWeather(
