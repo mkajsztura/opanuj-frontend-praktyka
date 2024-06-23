@@ -17,5 +17,9 @@ export function formValidator(
     errors.push('Age must be a positive number');
   }
 
+  if(isNaN(age)) {
+    throw new Error('Age must be a number');
+  }
+
   return errors;
 }
